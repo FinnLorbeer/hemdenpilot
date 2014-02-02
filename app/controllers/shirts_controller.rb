@@ -6,6 +6,10 @@ class ShirtsController < ApplicationController
   def index
     @shirts = Shirt.all
   end
+	
+	def search
+		@shirts = Shirt.all
+	end
 
   # GET /shirts/1
   # GET /shirts/1.json
