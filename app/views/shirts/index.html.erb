@@ -1,0 +1,71 @@
+<h1>Listing shirts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Label</th>
+      <th>Description</th>
+      <th>Ean</th>
+      <th>Profile</th>
+      <th>Collar</th>
+      <th>Breast pocket</th>
+      <th>Wristband</th>
+      <th>Color</th>
+      <th>Cloth</th>
+      <th>Price</th>
+      <th>Link</th>
+      <th>Affiliate</th>
+      <th>Picture</th>
+      <th>Size collar</th>
+      <th>Size bust</th>
+      <th>Size waist</th>
+      <th>Size body</th>
+      <th>Size arm</th>
+      <th>Size shoulder</th>
+      <th>Size back</th>
+      <th>Size wrist</th>
+      <th>Sleeve</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shirts.each do |shirt| %>
+      <tr>
+        <td><%= shirt.code %></td>
+        <td><%= shirt.label %></td>
+        <td><%= shirt.description %></td>
+        <td><%= shirt.ean %></td>
+        <td><%= shirt.profile %></td>
+        <td><%= shirt.collar %></td>
+        <td><%= shirt.breast_pocket %></td>
+        <td><%= shirt.wristband %></td>
+        <td><%= shirt.color %></td>
+        <td><%= shirt.cloth %></td>
+        <td><%= shirt.price %></td>
+        <td><%= shirt.link %></td>
+        <td><%= shirt.affiliate %></td>
+        <td><%= shirt.picture %></td>
+        <td><%= shirt.size_collar %></td>
+        <td><%= shirt.size_bust %></td>
+        <td><%= shirt.size_waist %></td>
+        <td><%= shirt.size_body %></td>
+        <td><%= shirt.size_arm %></td>
+        <td><%= shirt.size_shoulder %></td>
+        <td><%= shirt.size_back %></td>
+        <td><%= shirt.size_wrist %></td>
+        <td><%= shirt.sleeve %></td>
+        <td><%= link_to 'Show', shirt %></td>
+        <td><%= link_to 'Edit', edit_shirt_path(shirt) %></td>
+        <td><%= link_to 'Destroy', shirt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shirt', new_shirt_path %>

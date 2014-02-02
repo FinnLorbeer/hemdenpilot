@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hemdenpilot</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <!-- Webmaster: Finn Lorbeer. Email: finn.vonn.friesland@googlemail.com -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="DC.title" content="Hemdenpilot">
+  <meta name="DC.creator" content="Finn Lorbeer">
+  <meta name="DC.subject" content="Hemden Suchmaschinen Kooperation aus Berlin und Schleswig-Holstein">
+  <meta name="DC.descripion" content="Du suchst dein passendes Hemd? Wir haben es. Auf Lager.">
+  <meta name="DC.publisher" content="Finn Lorbeer und Kai Foerst">
+  <meta name="DC.type" content="service">
+  <meta name="DC.format" content="text/html">
+  <meta name="DC.language" content="de">
+  <meta name="DC.rights" content="Copyright by Finn Lorbeer">
+  <meta name="robots" content="all, index, follow">
+  <meta name="keywords" content="Anzug, Hemden, Kragen, Kragenweite, Manschetten, Passgenau, Groesse, Shirts, Suchmaschine, Hugo Boss, Olymp, Van Laac, Eterna">
+  <meta name="verification" content="52a7aab1165b3a8c3d2326b661e1072f" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="navbar-wrapper">
+    <div class="container">
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/home">Hemdenpilot</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+							<li class="divider-vertical"></li>
+              <li ><%= link_to "Schnitte", 'home#hemdenschnitt' %></li></li>
+              								<li class="divider-vertical"></li>
+              <li><%= link_to "Kragen", 'home#hemdenkragen' %></li></li>
+              								<li class="divider-vertical"></li>
+              <li><%= link_to "Manschetten", 'home#hemdenmanschetten' %></li></li>
+              <li class="dropdown">
+                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Kontakt<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                  <li ><%= link_to "Kontakt", 'kontakt', :role => 'menuitem', :tabindex => '-1' %></li></li>
+                  <li><%= link_to "Impressum", 'impressum', :role => 'menuitem', :tabindex => '-1' %></li></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!-- /.navbar-inner -->
+      </div><!-- /.navbar -->
+
+    </div> <!-- /.container -->
+  </div><!-- /.navbar-wrapper -->
+
+    <%= yield %>
+
+  <hr>
+  <div class="container">
+    <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+      <p>&copy; Hemdenpilot <%= l(Date.today, :format => '%B %Y') %></p>
+    </footer>
+  </div>
+
+</body>
+</html>

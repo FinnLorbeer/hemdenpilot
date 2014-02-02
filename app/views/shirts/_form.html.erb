@@ -1,0 +1,109 @@
+<%= form_for(@shirt) do |f| %>
+  <% if @shirt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shirt.errors.count, "error") %> prohibited this shirt from being saved:</h2>
+
+      <ul>
+      <% @shirt.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :label %><br>
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :ean %><br>
+    <%= f.text_field :ean %>
+  </div>
+  <div class="field">
+    <%= f.label :profile %><br>
+    <%= f.text_field :profile %>
+  </div>
+  <div class="field">
+    <%= f.label :collar %><br>
+    <%= f.text_field :collar %>
+  </div>
+  <div class="field">
+    <%= f.label :breast_pocket %><br>
+    <%= f.text_field :breast_pocket %>
+  </div>
+  <div class="field">
+    <%= f.label :wristband %><br>
+    <%= f.text_field :wristband %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :cloth %><br>
+    <%= f.text_field :cloth %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :link %><br>
+    <%= f.text_field :link %>
+  </div>
+  <div class="field">
+    <%= f.label :affiliate %><br>
+    <%= f.text_field :affiliate %>
+  </div>
+  <div class="field">
+    <%= f.label :picture %><br>
+    <%= f.text_field :picture %>
+  </div>
+  <div class="field">
+    <%= f.label :size_collar %><br>
+    <%= f.text_field :size_collar %>
+  </div>
+  <div class="field">
+    <%= f.label :size_bust %><br>
+    <%= f.text_field :size_bust %>
+  </div>
+  <div class="field">
+    <%= f.label :size_waist %><br>
+    <%= f.text_field :size_waist %>
+  </div>
+  <div class="field">
+    <%= f.label :size_body %><br>
+    <%= f.text_field :size_body %>
+  </div>
+  <div class="field">
+    <%= f.label :size_arm %><br>
+    <%= f.text_field :size_arm %>
+  </div>
+  <div class="field">
+    <%= f.label :size_shoulder %><br>
+    <%= f.text_field :size_shoulder %>
+  </div>
+  <div class="field">
+    <%= f.label :size_back %><br>
+    <%= f.text_field :size_back %>
+  </div>
+  <div class="field">
+    <%= f.label :size_wrist %><br>
+    <%= f.text_field :size_wrist %>
+  </div>
+  <div class="field">
+    <%= f.label :sleeve %><br>
+    <%= f.text_field :sleeve %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

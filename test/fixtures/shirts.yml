@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  label: MyString
+  description: MyString
+  ean: MyString
+  profile: MyString
+  collar: MyString
+  breast_pocket: MyString
+  wristband: MyString
+  color: MyString
+  cloth: MyString
+  price: 1.5
+  link: MyString
+  affiliate: MyString
+  picture: MyString
+  size_collar: 1.5
+  size_bust: 1.5
+  size_waist: 1.5
+  size_body: 1.5
+  size_arm: 1.5
+  size_shoulder: 1.5
+  size_back: 1.5
+  size_wrist: 1.5
+  sleeve: MyString
+
+two:
+  code: MyString
+  label: MyString
+  description: MyString
+  ean: MyString
+  profile: MyString
+  collar: MyString
+  breast_pocket: MyString
+  wristband: MyString
+  color: MyString
+  cloth: MyString
+  price: 1.5
+  link: MyString
+  affiliate: MyString
+  picture: MyString
+  size_collar: 1.5
+  size_bust: 1.5
+  size_waist: 1.5
+  size_body: 1.5
+  size_arm: 1.5
+  size_shoulder: 1.5
+  size_back: 1.5
+  size_wrist: 1.5
+  sleeve: MyString
