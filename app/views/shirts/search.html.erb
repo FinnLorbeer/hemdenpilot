@@ -1,71 +1,90 @@
-<h1>Listing shirts</h1>
+<div class="container-fluid hidden-xs" role="form" style="margin-top:55px; margin-left:5px; margin-right:5px; padding:10px; background-color: #F2F2F2;">
+  <%= form_tag search_path, :method => "get" do %>  
+    <div class="row-fluid">
+      <div class="col-md-1">
+      <%= image_tag "Auswahl_001.png", :class => "img-responsive control-label img-rounded" %>
+      </div>
+      <%= text_field_tag :size_collar, params[:size_collar], :class => "form-control col-md-1", :style => "width:94px; padding:5px; margin-top:20px;",:placeholder => "Kragen (cm)" %>
+    </div>
+    <div class="row-fluid">
+    <div class="col-md-1">
+      <%= image_tag "Auswahl_002.png", :class => "img-responsive control-label img-rounded" %>
+      </div>
+      <%= text_field_tag :size_bust, params[:size_bust], :class => "form-control col-md-1", :style => "width:94px; padding:5px; margin-top:20px;",:placeholder => "Brust (cm)" %>
+    </div>
+    <div class="row-fluid">
+      <div class="col-md-1">
+      <%= image_tag "Auswahl_003.png", :class => "img-responsive control-label img-rounded" %>
+      </div>
+      <%= text_field_tag :size_waist, params[:size_waist], :class => "form-control col-md-1", :style => "width:94px; padding:5px; margin-top:20px;",:placeholder => "Waist (cm)" %>
+    </div>
+    <div class="row-fluid">
+    <div class="col-md-1">
+      <%= image_tag "Auswahl_007.png", :class => "img-responsive control-label img-rounded" %>
+      </div>
+      <%= text_field_tag :size_arm, params[:size_arm], :class => "form-control col-md-1", :style => "width:94px; padding:5px; margin-top:20px;",:placeholder => "Ärmellänge" %>
+    </div>
+    <div class="row-fluid">
+      <div class="col-md-1">
+      <%= image_tag "Auswahl_001.png", :class => "img-responsive control-label img-rounded" %>
+      </div>
+      <%= text_field_tag :size_collar, params[:size_collar], :class => "form-control col-md-1", :style => "width:94px; padding:5px; margin-top:20px;",:placeholder => "Kragen (cm)" %>
+    </div>
+    <div class="row-fluid col-md-2">
+      <%= button_tag(type: "submit", class: "btn btn-primary pull-right", :style => "margin-top:20px;") do %>
+        <span class="glyphicon glyphicon-search"></span> Suche verfeinern
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Label</th>
-      <th>Description</th>
-      <th>Ean</th>
-      <th>Profile</th>
-      <th>Collar</th>
-      <th>Breast pocket</th>
-      <th>Wristband</th>
-      <th>Color</th>
-      <th>Cloth</th>
-      <th>Price</th>
-      <th>Link</th>
-      <th>Affiliate</th>
-      <th>Picture</th>
-      <th>Size collar</th>
-      <th>Size bust</th>
-      <th>Size waist</th>
-      <th>Size body</th>
-      <th>Size arm</th>
-      <th>Size shoulder</th>
-      <th>Size back</th>
-      <th>Size wrist</th>
-      <th>Sleeve</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="container-fluid">
+  <div class="row" style="margin-top:20px;">
+    <div class="col-md-1"></div>
+    <div class="col-md-10"  align="center">
 
-  <tbody>
-    <% @shirts.each do |shirt| %>
-      <tr>
-        <td><%= shirt.code %></td>
-        <td><%= shirt.label %></td>
-        <td><%= shirt.description %></td>
-        <td><%= shirt.ean %></td>
-        <td><%= shirt.profile %></td>
-        <td><%= shirt.collar %></td>
-        <td><%= shirt.breast_pocket %></td>
-        <td><%= shirt.wristband %></td>
-        <td><%= shirt.color %></td>
-        <td><%= shirt.cloth %></td>
-        <td><%= shirt.price %></td>
-        <td><%= shirt.link %></td>
-        <td><%= shirt.affiliate %></td>
-        <td><%= shirt.picture %></td>
-        <td><%= shirt.size_collar %></td>
-        <td><%= shirt.size_bust %></td>
-        <td><%= shirt.size_waist %></td>
-        <td><%= shirt.size_body %></td>
-        <td><%= shirt.size_arm %></td>
-        <td><%= shirt.size_shoulder %></td>
-        <td><%= shirt.size_back %></td>
-        <td><%= shirt.size_wrist %></td>
-        <td><%= shirt.sleeve %></td>
-        <td><%= link_to 'Show', shirt %></td>
-        <td><%= link_to 'Edit', edit_shirt_path(shirt) %></td>
-        <td><%= link_to 'Destroy', shirt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+    
+      <% if (@shirts.empty?) %>
+        <div class="alert alert-error">
+          <h4>Es tut uns leid, aber wir konnten keine Shirts finden.</h4>
+        </div>
+      <p>Tipp: gib nicht direkt alle Werte an, so dass du eine gr&ouml;&szlig;ere Auswahl an Hemden erh&auml;lst.</p>
+      <% else %>
+        <div class="alert alert-success">
+            Wir haben Hemden für dich gefunden. Alle Angaben sind in cm:
+        </div>
+        <% if @langarm %>
+          <div class="alert alert-info">
+            Wir haben kein Kurzarmhemd mit diesen Maßen, aber wir haben passende Langarmhemden. :)
+          </div>
+        <% elsif @kurzarm %>
+          <div class="alert alert-info">
+            Wir haben kein Langarmhemd mit diesen Maßen, aber wir haben passende Kurzarmhemden. :)
+          </div>
+        <% end %>
+        <table class="table table-hover" style="margin-top:10px;">
+          <% @shirts.each do |shirt| %>
+            <tr style="height:100px;">
+              <td style="vertical-align:middle;"><%= image_tag shirt.label + ".png", :style => "height:30px;"%></td>
+              <td style="vertical-align:middle;"><%= tidy_float (shirt.profile) %></td>
+              <td style="vertical-align:middle;">Kragen: <%= tidy_float (shirt.size_collar) %></td>
+              <td style="vertical-align:middle;">Brust: <%= tidy_float (shirt.size_bust) %></td>
+              <td style="vertical-align:middle;">Taile: <%= tidy_float (shirt.size_waist) %></td>
+              <td style="vertical-align:middle;">Arm: <%= tidy_float (shirt.size_arm) %></td>
+              <td style="vertical-align:middle;"><%= link_to 'Hemd ansehen', shirt, :class => 'btn  btn-large btn-primary pull-right' %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>    
+    
+    
+    
+    
+    
+    
+    </div> <!-- /col-md-10-->
+    <div class="col-md-1">.</div>
+  </div> <!-- /row -->
+</div><!--/.fluid-container-->
 
 <%= link_to 'New Shirt', new_shirt_path %>
