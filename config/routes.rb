@@ -9,5 +9,9 @@ Hemdenpilot::Application.routes.draw do
 	get '/impressum', to: 'shirts#impressum'
 	get '/new', to: 'shirts#new'
 	get '/show', to: 'shirts#show'
+  
+  resources :users
+  
+  match '/signup',  to: 'users#new',            via: 'get'
 
 end
