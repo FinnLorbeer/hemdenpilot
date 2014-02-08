@@ -46,6 +46,9 @@ end
 
 gem 'bootstrap-sass'
 
+# password encryption
+gem 'bcrypt-ruby'
+
 group :development do
   gem 'rails_layout'
 end
