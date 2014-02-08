@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row" style="margin-top:20px;">
+    <div class="col-md-1"></div>
+    <div class="col-md-10"  align="center">
+      <% if (@shirts.empty?) %>
+        <div class="alert alert-error">
+          <h4>Es tut uns leid, aber wir konnten keine Shirts finden.</h4>
+        </div>
+      <p>Tipp: gib nicht direkt alle Werte an, so dass du eine gr&ouml;&szlig;ere Auswahl an Hemden erh&auml;lst.</p>
+      <% else %>
+        <div class="alert alert-success">
+            Wir haben Hemden für dich gefunden. Alle Angaben sind in cm:
+        </div>
+        <% if @langarm %>
+          <div class="alert alert-info">
+            Wir haben kein Kurzarmhemd mit diesen Maßen, aber wir haben passende Langarmhemden. :)
+          </div>
+        <% elsif @kurzarm %>
+          <div class="alert alert-info">
+            Wir haben kein Langarmhemd mit diesen Maßen, aber wir haben passende Kurzarmhemden. :)
+          </div>
+        <% end %>
+        <table class="table table-hover" style="margin-top:10px;">
+          <% @shirts.each do |shirt| %>
+            <tr style="height:100px;">
+              <td style="vertical-align:middle;"><%= image_tag shirt.label + ".png", :style => "height:30px;"%></td>
+              <td style="vertical-align:middle;"><%= tidy_float (shirt.profile) %></td>
+              <td style="vertical-align:middle;">Kragen: <%= tidy_float (shirt.size_collar) %></td>
+              <td style="vertical-align:middle;">Brust: <%= tidy_float (shirt.size_bust) %></td>
+              <td style="vertical-align:middle;">Taile: <%= tidy_float (shirt.size_waist) %></td>
+              <td style="vertical-align:middle;">Arm: <%= tidy_float (shirt.size_arm) %></td>
+              <td style="vertical-align:middle;"><%= link_to 'Hemd ansehen', shirt, :class => 'btn  btn-large btn-primary pull-right' %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>    
+    </div> <!-- /col-md-10-->
+    <div class="col-md-1">.</div>
+  </div> <!-- /row -->
+</div><!--/.fluid-container-->
