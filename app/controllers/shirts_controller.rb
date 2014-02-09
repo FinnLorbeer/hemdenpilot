@@ -4,7 +4,7 @@ class ShirtsController < ApplicationController
   def index
     @shirts = Shirt.all
   end
-  
+
   def search
     collar_index = bust_index = waist_index = arm_index = search_run_indexer = 0
 
@@ -14,12 +14,12 @@ class ShirtsController < ApplicationController
       bust_index += 1
       waist_index += 1
       arm_index += 1
-        
+
       if search_run_indexer == 10
         collar_index = 1
         bust_index = waist_index = arm_index = 0
       end
-        
+
       if search_run_indexer == 20
         collar_index = 1
         bust_index = waist_index = arm_index = 0
@@ -31,7 +31,7 @@ class ShirtsController < ApplicationController
         break
       end
     end #while index < 30
-      
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @shirts }
@@ -39,18 +39,18 @@ class ShirtsController < ApplicationController
   end
 
   def show
-    @shirt = Shirt.find_by_code(params[:id])    
-   end
+    edit_shirt = Shirt.find_by(code: params[:code])
+  end
 
   def new
   end
 
   def edit
-    @shirt = Shirt.find_by_code(params[:id])    
-    
-    respond_to do |format|
-      format.html { render action: 'edit' }
-      format.json { render json: @shirts }
+    if current_user.present?
+      shirt = Shirt.find_by(code: params[:code])
+      render 'edit'
+    else
+      render 'show'
     end
   end
 
@@ -71,8 +71,9 @@ class ShirtsController < ApplicationController
   def update
     respond_to do |format|
       if @shirt.update(shirt_params)
-        format.html { redirect_to @shirt, notice: 'Shirt was successfully updated.' }
+        format.html { render action: 'edit' }
         format.json { head :no_content }
+        flash.now[:success] = 'Update des Hemdes erfolgreich - yay!'
       else
         format.html { render action: 'edit' }
         format.json { render json: @shirt.errors, status: :unprocessable_entity }
@@ -89,13 +90,13 @@ class ShirtsController < ApplicationController
   end
 
   private
-  
+
     def set_shirt
       @shirt = Shirt.find_by_code(params[:id])
     end
 
     def shirt_params
-      params.require(:shirt).permit(:code, :label, :description, :ean, :profile, :collar, :breast_pocket, :wristband, :color, :cloth, :price, :link, :affiliate, :picture, :size_collar, :size_bust, :size_waist, :size_body, :size_arm, :size_shoulder, :size_back, :size_wrist, :sleeve) if params[:shirt] 
+      params.require(:shirt).permit(:code, :label, :description, :ean, :profile, :collar, :breast_pocket, :wristband, :color, :cloth, :price, :link, :affiliate, :picture, :size_collar, :size_bust, :size_waist, :size_body, :size_arm, :size_shoulder, :size_back, :size_wrist, :sleeve) if params[:shirt]
     end
 
     def range(params, index, arm)

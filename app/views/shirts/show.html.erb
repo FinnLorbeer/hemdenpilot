@@ -3,12 +3,11 @@
     <div class="col-md-1"></div>
     <div class="col-md-7">
       <% if signed_in? %>
-        <%= button_to "Edit Shirt", edit_path, :class => 'btn btn-warning', :method => :get %>
-        <%= button_to 'Hemd Edit', @shirt, :class => 'btn  btn-large btn-warning', :method => :get %>
+        <p><%= link_to 'edit this shirt', {:action => "edit"}, {:class => "btn btn-large btn-warning"} %></p>
       <% end %>
       <%= button_to 'zurück zur Hemdenauswahl', search_path, :class => 'pull-left btn btn-info', :method => :get %>
       <%= image_tag @shirt.label + ".png", :style => 'height:70px; margin-left:30%; margin-top:20px;'%>
-      
+
       <h1 style="margin-top:50px;">Beschreibung</h1>
       <p style="text-align:justify;">Easy-Fit Logoshirt T-Shirt mit l&auml;ssigem Schnitt. Weiches und komfortables Material aus 100% gek&auml;mmter Baumwolle, ergeben einen maximalen Tragekomfort. Doppelt gelegter 1x1 Rippstrick-Kragen mit 5% Elasthananteil. Schulter-zu-Schulter Nackenband für perfekten Sitz und Formbest&auml;ndigkeit. Die Qualit&auml;t wird durch hochwertige Doppelnahtverarbeitung unterstrichen. Easy-Fit Logoshirt T-Shirts sind nat&uuml;rlich Einlaufvorbehandelt, damit es auch nach mehreren Waschg&auml;ngen die Form nicht verliert.</p>
       <h1 style="margin-top:50px;">Gr&ouml;&szlig;e:</h1>
@@ -24,26 +23,26 @@
             </tr>
             <tr>
               <td style="vertical-align:middle; text-align:center;"><b>Taillenweite:</b> <%= tidy_float(@shirt.size_waist) %></td>
-            </tr> 
+            </tr>
             <tr>
               <td style="vertical-align:middle; text-align:center;"><b>Rumpflaenge:</b> <%= tidy_float(@shirt.size_body) %></td>
-            </tr> 
+            </tr>
             <tr>
               <td style="vertical-align:middle; text-align:center;"><b>&Auml;rmellaenge:</b> <%= tidy_float(@shirt.size_arm) %></td>
-            </tr> 
+            </tr>
             <tr>
               <td style="vertical-align:middle; text-align:center;"><b>Schulterbreite:</b> <%= tidy_float(@shirt.size_shoulder) %></td>
-            </tr> 
+            </tr>
             <tr>
               <td style="vertical-align:middle; text-align:center;"><b>R&uuml;ckenbreite:</b> <%= tidy_float(@shirt.size_back) %></td>
-            </tr>       
+            </tr>
           </table>
         </div>
         <div class="col-md-7">
         <p style="text-align:justify;">Das Hemd verf&uuml;gt &uuml;ber einen <%= @shirt.sleeve %>. Es ist im <%= @shirt.profile %> verarbeitet und in der Farbe <%= @shirt.color %> gestaltet. Als Stoff wurde hier <%= @shirt.cloth %> verwendet. Folge dem Amazon link um das T-shirt direkt zu Kaufen.</p>
         <p style="text-align:justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
         </p>
-        <%= button_to 'Jetzt bestellen!', "http://www.amazon.de/Iron-Man-Logoshirt-T-Shirt-Steelblue/dp/B004QDHMH6", :class => 'btn btn-large btn-primary pull-right' %>
+        <%= button_to 'Jetzt bestellen!', "http://www.amazon.de/Iron-Man-Logoshirt-T-Shirt-Steelblue/dp/B004QDHMH6", :class => 'btn btn-lg btn-primary pull-right' %>
         </div>
       </div><!-- /row(table) -->
     </div><!-- /col-md-7 -->
