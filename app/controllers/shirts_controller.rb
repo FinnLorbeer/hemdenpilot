@@ -39,13 +39,19 @@ class ShirtsController < ApplicationController
   end
 
   def show
-  end
+    @shirt = Shirt.find_by_code(params[:id])    
+   end
 
   def new
-    @shirt = Shirt.new
   end
 
   def edit
+    @shirt = Shirt.find_by_code(params[:id])    
+    
+    respond_to do |format|
+      format.html { render action: 'edit' }
+      format.json { render json: @shirts }
+    end
   end
 
   def create

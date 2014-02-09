@@ -1,5 +1,7 @@
 Hemdenpilot::Application.routes.draw do
   resources :shirts
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   root to: 'shirts#index'
 
@@ -9,9 +11,10 @@ Hemdenpilot::Application.routes.draw do
 	get '/impressum', to: 'shirts#impressum'
 	get '/new', to: 'shirts#new'
 	get '/show', to: 'shirts#show'
+  get '/edit', to: 'shirts#edit'
+  get '/signin',  to: 'sessions#new'
+  get '/sessions', to: 'sessions#create'
+  delete '/signout', to: 'sessions#destroy'
   
-  resources :users
   
-  match '/signup',  to: 'users#new',            via: 'get'
-
 end

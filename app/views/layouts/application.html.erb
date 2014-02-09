@@ -26,6 +26,21 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
+    
+    <% if flash[:error] %>
+      <div class="container">
+        <div class="alert alert-danger">
+          <h4><%= flash[:error] %></h4>
+        </div>
+      </div>
+    <% end %>
+    <% if flash[:success] %>
+      <div class="container">
+        <div class="alert alert-success">
+          <h4><%= flash[:error] %></h4>
+        </div>
+      </div>
+    <% end %>
 
     <%= yield %>
 

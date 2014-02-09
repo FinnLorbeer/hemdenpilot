@@ -15,6 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+# password encryption
+gem 'bcrypt-ruby'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -45,9 +48,6 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'bootstrap-sass'
-
-# password encryption
-gem 'bcrypt-ruby'
 
 group :development do
   gem 'rails_layout'
