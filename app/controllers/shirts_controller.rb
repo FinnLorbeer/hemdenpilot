@@ -7,9 +7,14 @@ class ShirtsController < ApplicationController
 
   def search
     collar_index = bust_index = waist_index = arm_index = search_run_indexer = 0
+    label = params[:label].to_s.sub("{\"id\"=>\"", "").chomp("\"}")
 
     while search_run_indexer < 30 do
-      @shirts = Shirt.where(:size_collar => range(params[:size_collar], collar_index, false), :size_bust => range(params[:size_bust], bust_index, false), :size_waist => range(params[:size_waist], waist_index, false), :size_arm => range(params[:size_arm], arm_index, true)).limit(50)
+      if params[:label] == nil
+        @shirts = Shirt.where(:size_collar => range(params[:size_collar], collar_index, false), :size_bust => range(params[:size_bust], bust_index, false), :size_waist => range(params[:size_waist], waist_index, false), :size_arm => range(params[:size_arm], arm_index, true)).limit(50)
+      else
+        @shirts = Shirt.where(:size_collar => range(params[:size_collar], collar_index, false), :size_bust => range(params[:size_bust], bust_index, false), :size_waist => range(params[:size_waist], waist_index, false), :size_arm => range(params[:size_arm], arm_index, true), :label => label).limit(50)
+      end
       search_run_indexer += 1
       bust_index += 1
       waist_index += 1

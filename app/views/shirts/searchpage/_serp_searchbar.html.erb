@@ -28,7 +28,7 @@
       <div class="col-md-1">
       <%= image_tag "Auswahl_001.png", :class => "img-responsive control-label img-rounded" %>
       </div>
-      <%= text_field_tag :size_collar, params[:size_collar], :class => "form-control col-md-1", :style => "width:94px; padding:5px; margin-top:20px;",:placeholder => "Kragen (cm)" %>
+      <%= collection_select( :label, :id, Shirt.select(:label).uniq, :label, :label, {:include_blank => "Hersteller"}, {class: "btn btn-default dropdown-toggle col-md-1", style: "margin-top:20px;"}) %>
     </div>
     <div class="row-fluid col-md-2">
       <%= button_tag(type: "submit", class: "btn btn-primary pull-right", :style => "margin-top:20px;") do %>
