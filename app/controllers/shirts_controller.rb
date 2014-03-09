@@ -10,7 +10,7 @@ class ShirtsController < ApplicationController
     label = params[:label].to_s.sub("{\"id\"=>\"", "").chomp("\"}")
 
     while search_run_indexer < 30 do
-      if params[:label] == nil
+      if label == ''
         @shirts = Shirt.where(:size_collar => range(params[:size_collar], collar_index, false), :size_bust => range(params[:size_bust], bust_index, false), :size_waist => range(params[:size_waist], waist_index, false), :size_arm => range(params[:size_arm], arm_index, true)).limit(50)
       else
         @shirts = Shirt.where(:size_collar => range(params[:size_collar], collar_index, false), :size_bust => range(params[:size_bust], bust_index, false), :size_waist => range(params[:size_waist], waist_index, false), :size_arm => range(params[:size_arm], arm_index, true), :label => label).limit(50)
