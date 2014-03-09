@@ -29,11 +29,11 @@
               <td style="vertical-align:middle;">Brust: <%= tidy_float (shirt.size_bust) %></td>
               <td style="vertical-align:middle;">Taile: <%= tidy_float (shirt.size_waist) %></td>
               <td style="vertical-align:middle;">Arm: <%= tidy_float (shirt.size_arm) %></td>
-              <td style="vertical-align:middle;"><%= button_to 'Hemd ansehen', shirt, :class => 'btn  btn-large btn-primary pull-right', :method => :get %></td>
+              <td style="vertical-align:middle;"><%= link_to 'Hemd ansehen', link_to_label(shirt), :class => 'btn  btn-large btn-primary pull-right', :method => :get %></td>
             </tr>
           <% end %>
         </table>
-      <% end %>    
+      <% end %>
     </div> <!-- /col-md-10-->
     <div class="col-md-1">.</div>
   </div> <!-- /row -->
