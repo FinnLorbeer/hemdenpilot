@@ -32,7 +32,7 @@ Hemdenpilot::Application.routes.draw do
 
 
   get '/labels', to: 'about_shirts#labels'
-  get "about_shirts/ties"
+  get 'ties', to: 'about_shirts#ties'
   get "about_shirts/washing"
   get "about_shirts/buttons"
   get "about_shirts/folding"
