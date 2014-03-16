@@ -6,7 +6,7 @@ Hemdenpilot::Application.routes.draw do
 
   root to: 'shirts#index'
 
-  
+
 	get '/home', to: 'shirts#index'
 	get '/search', to: 'shirts#search'
 	get '/kontakt', to: 'shirts#kontakt'
@@ -23,12 +23,13 @@ Hemdenpilot::Application.routes.draw do
 
 
   get '/impressum', to: 'contacts#impressum'
+  get '/contact', to: 'contacts#contact'
   get "contacts/aboutus"
   get "contacts/blog"
   get "contacts/jobs"
   get "contacts/affiliate"
   get "contacts/faq"
-  get "contacts/contact"
+
 
 
 end
