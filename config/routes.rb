@@ -1,12 +1,5 @@
 Hemdenpilot::Application.routes.draw do
 
-  get "about_shirts/labels"
-  get "about_shirts/ties"
-  get "about_shirts/washing"
-  get "about_shirts/buttons"
-  get "about_shirts/folding"
-  get "about_shirts/trends"
-  get "about_shirts/good_to_know"
   resources :shirts
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
@@ -36,6 +29,15 @@ Hemdenpilot::Application.routes.draw do
   get "contacts/jobs"
   get "contacts/affiliate"
   get "contacts/faq"
+
+
+  get '/labels', to: 'about_shirts#labels'
+  get "about_shirts/ties"
+  get "about_shirts/washing"
+  get "about_shirts/buttons"
+  get "about_shirts/folding"
+  get "about_shirts/trends"
+  get "about_shirts/good_to_know"
 
 
 
