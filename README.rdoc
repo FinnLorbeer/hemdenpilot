@@ -1,1 +1,3 @@
 == Hemdenpilot
+
+small repository to build basics of a shirt reseller app
