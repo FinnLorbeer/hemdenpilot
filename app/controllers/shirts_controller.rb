@@ -1,5 +1,3 @@
-require 'pry'
-
 class ShirtsController < ApplicationController
 
   before_action :set_shirt, only: [:show, :edit, :update, :destroy]
