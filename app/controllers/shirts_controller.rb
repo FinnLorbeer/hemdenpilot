@@ -1,4 +1,7 @@
+require 'pry'
+
 class ShirtsController < ApplicationController
+
   before_action :set_shirt, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -6,36 +9,37 @@ class ShirtsController < ApplicationController
   end
 
   def search
-    collar_index = bust_index = waist_index = arm_index = search_run_indexer = 0
     label = params[:label].to_s.sub("{\"id\"=>\"", "").chomp("\"}")
 
-    while search_run_indexer < 30 do
-      if label == ''
-        @shirts = Shirt.where(:size_collar => range(params[:size_collar], collar_index, false), :size_bust => range(params[:size_bust], bust_index, false), :size_waist => range(params[:size_waist], waist_index, false), :size_arm => range(params[:size_arm], arm_index, true)).limit(50)
-      else
-        @shirts = Shirt.where(:size_collar => range(params[:size_collar], collar_index, false), :size_bust => range(params[:size_bust], bust_index, false), :size_waist => range(params[:size_waist], waist_index, false), :size_arm => range(params[:size_arm], arm_index, true), :label => label).limit(50)
-      end
-      search_run_indexer += 1
-      bust_index += 1
-      waist_index += 1
-      arm_index += 1
+    collar = params[:size_collar].to_i
+    bust = params[:size_bust].to_i
+    waist = params[:size_waist].to_i
+    arm = params[:size_arm].to_i
 
-      if search_run_indexer == 10
-        collar_index = 1
-        bust_index = waist_index = arm_index = 0
-      end
+    shirts = {}
+    shirts[:size_collar] = collar unless collar == 0
+    shirts[:size_bust] =  bust unless bust == 0
+    shirts[:size_waist] = waist unless waist == 0
+    shirts[:size_arm] =  arm unless arm == 0
+    shirts[:label] = label unless label == ''
 
-      if search_run_indexer == 20
-        collar_index = 1
-        bust_index = waist_index = arm_index = 0
-        change_arm_length
+    ordering_param = "shirts.size_collar ASC, shirts.size_bust ASC, shirts.size_waist ASC"
+
+    @shirts = Shirt.where(:shirts => shirts).order(ordering_param)
+
+    3.times do |increase|
+      if @shirts.empty?
+        shirts[:size_bust] = (bust .. bust + increase + 1) unless bust == 0
+        shirts[:size_waist] = (waist .. waist + increase + 1) unless waist == 0
+        @shirts = Shirt.where(:shirts => shirts).order(ordering_param)
       end
-      puts "index: #{search_run_indexer} == results: #{@shirts.size}"
-      puts "collar_index = #{collar_index}, bust_index = #{bust_index}, waist_index = #{waist_index}, arm_index = #{arm_index}"
-      if @shirts.size > 4
-        break
-      end
-    end #while index < 30
+    end
+
+    if @shirts.empty?
+      shirts[:size_collar] = (collar .. collar + 1 ) unless collar == 0
+      shirts[:size_arm] = (arm -1 .. arm + 1 ) unless arm == 0
+      @shirts = Shirt.where(:shirts => shirts).order(ordering_param)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -104,24 +108,4 @@ class ShirtsController < ApplicationController
       params.require(:shirt).permit(:code, :label, :description, :ean, :profile, :collar, :breast_pocket, :wristband, :color, :cloth, :price, :link, :affiliate, :picture, :size_collar, :size_bust, :size_waist, :size_body, :size_arm, :size_shoulder, :size_back, :size_wrist, :sleeve) if params[:shirt]
     end
 
-    def range(params, index, arm)
-      if params.to_i == 0
-        0...1000
-      elsif arm
-        (params.to_i - index )...(params.to_i + index + 1)
-      else
-        (params.to_i - 1)...(params.to_i + index + 1)
-      end
-
-    end
-
-    def change_arm_length
-      if params[:size_arm].to_i > 20
-        params[:size_arm] = 15
-        @shortsleeve = true
-      else
-        params[:size_arm] = 70
-        @longsleeve = true
-      end
-    end
 end

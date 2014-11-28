@@ -11,15 +11,6 @@
         <div class="alert alert-success">
             Wir haben Hemden für dich gefunden. Alle Angaben sind in cm:
         </div>
-        <% if @langarm %>
-          <div class="alert alert-info">
-            Wir haben kein Kurzarmhemd mit diesen Maßen, aber wir haben passende Langarmhemden. :)
-          </div>
-        <% elsif @kurzarm %>
-          <div class="alert alert-info">
-            Wir haben kein Langarmhemd mit diesen Maßen, aber wir haben passende Kurzarmhemden. :)
-          </div>
-        <% end %>
         <table class="table table-hover" style="margin-top:10px;">
           <% @shirts.each do |shirt| %>
             <tr style="height:100px;">
