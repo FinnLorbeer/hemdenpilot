@@ -23,20 +23,20 @@ class ShirtsController < ApplicationController
 
     ordering_param = "shirts.size_collar ASC, shirts.size_bust ASC, shirts.size_waist ASC"
 
-    @shirts = Shirt.where(:shirts => shirts).order(ordering_param)
+    @shirts = find_shirts(shirts, ordering_param)
 
-    3.times do |increase|
-      if @shirts.empty?
+    10.times do |increase|
+      if @shirts.count < 4
         shirts[:size_bust] = (bust .. bust + increase + 1) unless bust == 0
         shirts[:size_waist] = (waist .. waist + increase + 1) unless waist == 0
-        @shirts = Shirt.where(:shirts => shirts).order(ordering_param)
+        @shirts = find_shirts(shirts, ordering_param)
       end
     end
 
-    if @shirts.empty?
-      shirts[:size_collar] = (collar .. collar + 1 ) unless collar == 0
-      shirts[:size_arm] = (arm -1 .. arm + 1 ) unless arm == 0
-      @shirts = Shirt.where(:shirts => shirts).order(ordering_param)
+    if @shirts.count < 4
+      shirts[:size_collar] = ( collar .. collar + 1 ) unless collar == 0
+      shirts[:size_arm] = ( arm - 1 .. arm + 1 ) unless arm == 0
+      @shirts = find_shirts(shirts, ordering_param)
     end
 
     respond_to do |format|
@@ -46,7 +46,7 @@ class ShirtsController < ApplicationController
   end
 
   def show
-    edit_shirt = Shirt.find_by(code: params[:code])
+    Shirt.find_by(code: params[:code])
   end
 
   def new
@@ -54,7 +54,7 @@ class ShirtsController < ApplicationController
 
   def edit
     if current_user.present?
-      shirt = Shirt.find_by(code: params[:code])
+      Shirt.find_by(code: params[:code])
       render 'edit'
     else
       render 'show'
@@ -63,7 +63,6 @@ class ShirtsController < ApplicationController
 
   def create
     @shirt = Shirt.new(shirt_params)
-
     respond_to do |format|
       if @shirt.save
         format.html { redirect_to @shirt, notice: 'Shirt was successfully created.' }
@@ -98,12 +97,22 @@ class ShirtsController < ApplicationController
 
   private
 
+    def find_shirts(shirts, ordering_param)
+      Shirt.where(:shirts => shirts).order(ordering_param)
+    end
+
     def set_shirt
       @shirt = Shirt.find_by_code(params[:id])
     end
 
     def shirt_params
-      params.require(:shirt).permit(:code, :label, :description, :ean, :profile, :collar, :breast_pocket, :wristband, :color, :cloth, :price, :link, :affiliate, :picture, :size_collar, :size_bust, :size_waist, :size_body, :size_arm, :size_shoulder, :size_back, :size_wrist, :sleeve) if params[:shirt]
+      params.require(:shirt).permit(
+          :code, :label, :description, :ean, :profile,
+          :collar, :breast_pocket, :wristband, :color,
+          :cloth, :price, :link, :affiliate, :picture,
+          :size_collar, :size_bust, :size_waist, :size_body,
+          :size_arm, :size_shoulder, :size_back, :size_wrist,
+          :sleeve) if params[:shirt]
     end
 
 end

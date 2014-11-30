@@ -17,3 +17,6 @@
 
 # Ignore all system files
 *~
+
+# Ignore ideas
+./idea
