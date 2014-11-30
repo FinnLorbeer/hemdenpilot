@@ -7,36 +7,28 @@ class ShirtsController < ApplicationController
   end
 
   def search
-    label = params[:label].to_s.sub("{\"id\"=>\"", "").chomp("\"}")
+    collar = get_param(:size_collar)
+    bust = get_param(:size_bust)
+    waist = get_param(:size_waist)
+    arm = get_param(:size_arm)
+    label = get_param(:label)
 
-    collar = params[:size_collar].to_i
-    bust = params[:size_bust].to_i
-    waist = params[:size_waist].to_i
-    arm = params[:size_arm].to_i
-
-    shirts = {}
-    shirts[:size_collar] = collar unless collar == 0
-    shirts[:size_bust] =  bust unless bust == 0
-    shirts[:size_waist] = waist unless waist == 0
-    shirts[:size_arm] =  arm unless arm == 0
-    shirts[:label] = label unless label == ''
-
-    ordering_param = "shirts.size_collar ASC, shirts.size_bust ASC, shirts.size_waist ASC"
-
-    @shirts = find_shirts(shirts, ordering_param)
+    search_param = find_applicable_params(collar, bust, waist, arm, label)
+    ordering_param = 'shirts.size_collar ASC, shirts.size_bust ASC, shirts.size_waist ASC'
+    @shirts = find_shirts(search_param, ordering_param)
 
     10.times do |increase|
       if @shirts.count < 4
-        shirts[:size_bust] = (bust .. bust + increase + 1) unless bust == 0
-        shirts[:size_waist] = (waist .. waist + increase + 1) unless waist == 0
-        @shirts = find_shirts(shirts, ordering_param)
+        search_param[:size_bust] = (bust .. bust + increase + 1) unless bust == 0
+        search_param[:size_waist] = (waist .. waist + increase + 1) unless waist == 0
+        @shirts = find_shirts(search_param, ordering_param)
       end
     end
 
     if @shirts.count < 4
-      shirts[:size_collar] = ( collar .. collar + 1 ) unless collar == 0
-      shirts[:size_arm] = ( arm - 1 .. arm + 1 ) unless arm == 0
-      @shirts = find_shirts(shirts, ordering_param)
+      search_param[:size_collar] = ( collar .. collar + 1 ) unless collar == 0
+      search_param[:size_arm] = ( arm - 1 .. arm + 1 ) unless arm == 0
+      @shirts = find_shirts(search_param, ordering_param)
     end
 
     respond_to do |format|
@@ -97,8 +89,8 @@ class ShirtsController < ApplicationController
 
   private
 
-    def find_shirts(shirts, ordering_param)
-      Shirt.where(:shirts => shirts).order(ordering_param)
+    def find_shirts(search_param, ordering_param)
+      Shirt.where(:shirts => search_param).order(ordering_param)
     end
 
     def set_shirt
