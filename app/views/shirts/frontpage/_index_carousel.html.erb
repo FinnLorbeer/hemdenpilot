@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide hidden-xs" data-ride="carousel">
+<div id="myCarousel" class="carousel slide hidden-xs hidden-sm" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators hidden-sm">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -6,7 +6,7 @@
 		<li data-target="#myCarousel" data-slide-to="2"></li>
 		<li data-target="#myCarousel" data-slide-to="3"></li>
 	</ol>
-	<div class="carousel-inner">
+	<div class="carousel-inner" style="height:400px;">
 		<div class="item active">
 			<%= image_tag "carousel1.jpg" %>
 		</div>
@@ -20,4 +20,28 @@
 			<%= image_tag "carousel4.jpg" %>
 		</div>
 	</div>
+</div><!-- /.carousel -->
+
+<div id="myCarousel" class="carousel slide visible-sm" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators hidden-sm">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+  <div class="carousel-inner" style="height:280px;">
+    <div class="item active">
+      <%= image_tag "carousel1.jpg" %>
+    </div>
+    <div class="item">
+      <%= image_tag "carousel2.jpg" %>
+    </div>
+    <div class="item">
+      <%= image_tag "carousel3.jpg" %>
+    </div>
+    <div class="item">
+      <%= image_tag "carousel4.jpg" %>
+    </div>
+  </div>
 </div><!-- /.carousel -->
