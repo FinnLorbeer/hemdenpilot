@@ -21,13 +21,13 @@ class ShirtsController < ApplicationController
       if @shirts.count < 4
         search_param[:size_bust] = (bust .. bust + increase + 1) unless bust == 0
         search_param[:size_waist] = (waist .. waist + increase + 1) unless waist == 0
+        search_param[:size_arm] = ( arm .. arm + increase ) unless arm == 0
         @shirts = find_shirts(search_param, ordering_param)
       end
     end
 
     if @shirts.count < 4
       search_param[:size_collar] = ( collar .. collar + 1 ) unless collar == 0
-      search_param[:size_arm] = ( arm - 1 .. arm + 1 ) unless arm == 0
       @shirts = find_shirts(search_param, ordering_param)
     end
 
