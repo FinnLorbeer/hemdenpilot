@@ -12,18 +12,23 @@
     }
 }
 
+// primaty button in dark blue
+
 .btn-primary{
   background-color: #2a6496;
   border-color: #2a6496;
 }
 .btn-primary:hover, .submit:hover, .btn-primary:focus, .submit:focus, .btn-primary:active, .submit:active, .btn-primary.active, .active.submit {
-  background-color: #285e8e;
-  border-color: #285e8e;
+  background-color: #245269;
+  border-color: #245269;
   color: white;
 }
 
+// Navbar
+
 .navbar-blue{
   background-color: #2a6496;
+  border-color: #2a6496;
 }
 
 .navbar-brand{
@@ -57,6 +62,31 @@
     background-color: #359cd6;
   }
 }
+
+// Searchbar
+
+.search-bar{
+  top:50px;
+  left:5%;
+  position:absolute;
+  min-width:300px;
+  height:400px;
+  padding-left:13px;
+  padding-right:13px;
+  background-color: rgba(0,0,20,0.5);
+  color: whitesmoke;
+}
+
+.search__field{
+  color: #222222;
+  width:103px;
+  padding:5px;
+}
+
+.search__image{
+  width:105px;
+}
+
 
 
 // make all images responsive by default
