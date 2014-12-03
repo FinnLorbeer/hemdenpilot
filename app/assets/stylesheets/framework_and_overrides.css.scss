@@ -1,7 +1,6 @@
 // import the CSS framework
 @import "bootstrap";
 
-
 .jumbotron {
     padding: 0.5em 0.6em;
     h1 {
@@ -13,8 +12,51 @@
     }
 }
 
+.btn-primary{
+  background-color: #2a6496;
+  border-color: #2a6496;
+}
+.btn-primary:hover, .submit:hover, .btn-primary:focus, .submit:focus, .btn-primary:active, .submit:active, .btn-primary.active, .active.submit {
+  background-color: #285e8e;
+  border-color: #285e8e;
+  color: white;
+}
 
+.navbar-blue{
+  background-color: #2a6496;
+}
 
+.navbar-brand{
+  color: whitesmoke;
+  text-transform: uppercase;
+  font-weight: bold;
+  &:visited{
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  &:focus{
+  color: whitesmoke !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  }
+  &:hover{
+    color: whitesmoke !important;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+.navbar-default .navbar-nav > li > a {
+  color: whitesmoke;
+  text-transform: uppercase;
+  font-weight: bold;
+  &:hover{
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: #359cd6;
+  }
+}
 
 
 // make all images responsive by default
