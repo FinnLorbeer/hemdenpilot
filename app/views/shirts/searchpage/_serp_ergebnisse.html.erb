@@ -24,7 +24,7 @@
               <td style="vertical-align:middle;">Brust: <%= tidy_float (shirt.size_bust) %></td>
               <td style="vertical-align:middle;">Taile: <%= tidy_float (shirt.size_waist) %></td>
               <td style="vertical-align:middle;">Arm: <%= tidy_float (shirt.size_arm) %></td>
-              <td style="vertical-align:middle;"><%= link_to 'Hemd ansehen', link_to_label(shirt), :class => 'btn  btn-large btn-primary pull-right', :method => :get %></td>
+              <td style="vertical-align:middle;"><%= link_to 'Hemd ansehen', link_to_label(shirt), :class => 'btn  btn-large btn-primary pull-right', :method => :get, :rel => 'nofollow' %></td>
             </tr>
           <% end %>
         </table>
